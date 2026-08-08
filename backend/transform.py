@@ -47,6 +47,14 @@ def build_tables(raw: pd.DataFrame) -> dict[str, pd.DataFrame]:
 
 
 def run() -> None:
+    # Ship the banner image alongside the tables, so a deployed app (reading
+    # only from 02_data/tables/ or the bucket) can show it too — assets/ isn't
+    # part of the repo (*.png is gitignored), so this is the only way it
+    # reaches GCS. Runs regardless of whether there's raw data yet.
+    frontpage = config.ROOT / "assets" / "frontpage.png"
+    if frontpage.exists():
+        storage.save_image("frontpage", frontpage)
+
     raw = read_raw()
     if raw.empty:
         print(f"[transform] No data files under {config.RAW_DIR} — nothing to do.")
