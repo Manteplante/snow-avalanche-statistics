@@ -7,6 +7,7 @@
 *.py[cod]
 *.csv
 *.png
+!assets/frontpage.png
 
 
 # Credentials — never commit service-account keys or app secrets.
