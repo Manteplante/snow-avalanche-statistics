@@ -1,8 +1,8 @@
-"""Snøskred — interactive map of avalanche accidents, reads the table
-03_notebooks/01_clean_data.ipynb saved as 'snow_avalanche_data'.
+"""Isulykke — interactive map of ice accidents, reads the table
+03_notebooks/02_clean_ice_data.ipynb saved as 'ice_reports_clean'.
 
 Uses Kartverket's topographic WMTS tiles (verified live) rather than
-OpenStreetMap for terrain context relevant to avalanche locations.
+OpenStreetMap for terrain context relevant to ice accident locations.
 """
 
 import html
@@ -23,18 +23,13 @@ WEEKDAY_ORDER = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", 
 
 # Fields shown in a marker's popup, in the requested order.
 POPUP_FIELDS = [
-    ("Område", "område"),
+    ("Fylke", "fylke"),
     ("Kommune", "kommune"),
-    ("Aktivitet", "aktivitet"),
-    ("Utløser", "utløser"),
-    ("Skredtatte", "skredtatte"),
+    ("Gjennom isen", "gjennom isen"),
     ("Døde", "døde"),
-    ("Kun skadet", "kun skadet"),
-    ("Skredutstyr", "skredutstyr"),
-    ("Skredtype", "skredtype"),
-    ("Svakt lag", "svakt lag"),
-    ("Skredstørrelse", "skredstørrelse"),
-    ("Eksposisjon", "eksposisjon"),
+    ("Høyde", "høyde"),
+    ("Vanntype", "vanntype"),
+    ("Istype", "istype"),
     ("Comment", "comment"),
 ]
 
@@ -43,13 +38,13 @@ POPUP_FIELDS = [
 KARTVERKET_TOPO_TILES = "https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/webmercator/{z}/{y}/{x}.png"
 KARTVERKET_ATTR = '&copy; <a href="https://www.kartverket.no">Kartverket</a>'
 
-st.header("🗺️ Snøskred")
-st.caption("ℹ️ Fordi Kartverket-kartet ikke dekker Svalbard, vises ikke snøskredulykker derfra i denne visningen.")
+st.header("🗺️ Isulykke")
+st.caption("ℹ️ Fordi Kartverket-kartet ikke dekker Svalbard, vises ikke isulykker derfra i denne visningen.")
 
-df = storage.load("snow_avalanche_data")
+df = storage.load("ice_reports_clean")
 
 if df.empty:
-    st.info(f"No `snow_avalanche_data` table yet. Reading from `{storage.describe()}`.")
+    st.info(f"No `ice_reports_clean` table yet. Reading from `{storage.describe()}`.")
     st.stop()
 
 # ── Sidebar slicers ────────────────────────────────────────────────────────
@@ -90,11 +85,11 @@ for _, row in df.iterrows():
     details = "".join(
         f"<b>{label}:</b> {_field(row, column)}<br>" for label, column in POPUP_FIELDS
     )
-    popup_html = f"<b>{html.escape(str(row['sted']))}</b><br>{details}"
+    popup_html = f"<b>{html.escape(str(row['vann/sted']))}</b><br>{details}"
 
     folium.Marker(
         location=[row["latitude"], row["longitude"]],
-        tooltip=str(row["sted"]),
+        tooltip=str(row["vann/sted"]),
         popup=folium.Popup(popup_html, max_width=300),
         icon=folium.Icon(color="red", icon="exclamation-triangle", prefix="fa"),
     ).add_to(cluster)
