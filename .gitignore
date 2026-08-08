@@ -5,6 +5,9 @@
 .venv/
 **/__pycache__/
 *.py[cod]
+*.csv
+*.png
+
 
 # Credentials — never commit service-account keys or app secrets.
 # Every .json is ignored, because that is the shape a Google key arrives in
