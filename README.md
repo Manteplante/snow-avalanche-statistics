@@ -22,6 +22,13 @@ Norway — this project would not exist without it.
 **And to [Kartverket](https://www.kartverket.no)** (the Norwegian Mapping
 Authority) for the open topographic map tiles the two pages are built on.
 
+**And a huge thank you to [NVE](https://www.nve.no)** (the Norwegian Water
+Resources and Energy Directorate) for
+["Skredhendelser"](https://data.norge.no/nb/datasets/9a9d9575-59c7-48d5-9f68-1d66bd8e76a7/skredhendelser),
+their national landslide and avalanche event database, published under
+CC BY 3.0 — over 100,000 events dating back to the 1600s, covering snow
+avalanches, rockfall, earth/clay slides and more. (COMING TO THE APP SOON)
+
 ## Getting started
 
 ```bash
