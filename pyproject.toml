@@ -1,7 +1,7 @@
 [project]
-name = "streamlit-google-storage-template"
+name = "snow-avalanche-overview-in-norway"
 version = "0.1.0"
-description = "Template for a Streamlit app backed by a Google Cloud Storage-hosted medallion data pipeline"
+description = "A practical overview of snow avalanches and other similar accidents in Norway"
 requires-python = ">=3.12"
 dependencies = [
     "beautifulsoup4>=4.12.0",
