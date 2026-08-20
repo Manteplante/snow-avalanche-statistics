@@ -6,6 +6,9 @@ snow avalanches, and more, distinguished by the numeric `skredType` field.
 Each nve_*_events.py source is a thin wrapper: it just supplies the `where`
 clause for its slide-type range and gets the same columns back.
 
+These sources land in 02_data/raw/ like any other, but backend/transform.py
+deliberately excludes them from the `records` table — see the comment there.
+
 Leading underscore means this file is not itself a source.
 """
 from __future__ import annotations
@@ -39,7 +42,10 @@ def _page(where: str, offset: int) -> list[dict]:
         "f": "json",
     }
     url = f"{NVE_SKREDHENDELSER_URL}?{urlencode(params)}"
-    return json.loads(get_html(url)).get("features", [])
+    # A proper paginated bulk REST API (CC BY 3.0, built for exactly this),
+    # not a scraped webpage — a lighter delay than _http.py's 1s default is
+    # still polite without making a many-page fetch take minutes per source.
+    return json.loads(get_html(url, delay_seconds=0.2)).get("features", [])
 
 
 def _date(a: dict) -> str | None:
@@ -76,5 +82,6 @@ def fetch_events(where: str) -> pd.DataFrame:
         if len(features) < PAGE_SIZE:
             break
         offset += PAGE_SIZE
+        print(f"  [nve] {where}: {len(rows):,} so far...")
 
     return pd.DataFrame(rows)

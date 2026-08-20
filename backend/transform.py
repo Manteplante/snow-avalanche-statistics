@@ -43,7 +43,12 @@ def build_tables(raw: pd.DataFrame) -> dict[str, pd.DataFrame]:
     Real projects clean, join, and aggregate here, and usually return several
     tables — one per thing a page needs to draw.
     """
-    return {"records": raw}
+    # nve_*_events.py sources land in 02_data/raw/ (ingested, and available to
+    # a future table if something is built for them) but are deliberately
+    # excluded here: they're ~50x the row count of everything else, and
+    # `records` feeds a table that gets uploaded to the bucket.
+    records = raw[~raw["source"].str.startswith("nve_")]
+    return {"records": records}
 
 
 def run() -> None:

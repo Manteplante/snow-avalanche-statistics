@@ -1,4 +1,4 @@
-"""Target URL(s) for avalanche_reports.py, ice_reports.py and nve_avalanche_events.py.
+"""Target URL(s) for avalanche_reports.py, ice_reports.py and nve_*_events.py.
 
 Leading underscore means this file is not itself a source.
 """
@@ -20,6 +20,5 @@ ICE_REPORTS_URL = "https://www.iskart.no/varsom/ulykker/json/isulykker_jsonp.jso
 # 9f68-1d66bd8e76a7/skredhendelser). A plain ArcGIS REST Feature Service query
 # endpoint — real JSON, no cookies, no JS. Layer 0 ("Skredtype") carries every
 # slide type NVE tracks (rockslides, quick-clay slides, snow avalanches, ...);
-# nve_avalanche_events.py filters server-side to snow avalanches only
-# (skredType 130-139).
+# each nve_*_events.py source filters server-side to its own skredType range.
 NVE_SKREDHENDELSER_URL = "https://gis3.nve.no/map/rest/services/Mapservices/SkredHendelser/MapServer/0/query"
