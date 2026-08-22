@@ -19,8 +19,7 @@ if frontpage is None:
 if frontpage is not None:
     st.image(frontpage)
     st.caption(
-        'Image generated using the prompt "Create an animated picture of a blue sky, '
-        'a mountain, and a snow avalanche," by OpenAI.'
+        'Photo: Markus Malmin/Røde Kors. Thank you for letting us use the photo!'
     )
 
 st.caption(
