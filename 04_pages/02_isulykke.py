@@ -39,6 +39,7 @@ KARTVERKET_TOPO_TILES = "https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/
 KARTVERKET_ATTR = '&copy; <a href="https://www.kartverket.no">Kartverket</a>'
 
 st.header("🗺️ Isulykke")
+st.caption("📡 Data: [Varsom.no](https://www.varsom.no)")
 st.caption("ℹ️ Fordi Kartverket-kartet ikke dekker Svalbard, vises ikke isulykker derfra i denne visningen.")
 
 df = storage.load("ice_reports_clean")

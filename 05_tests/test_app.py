@@ -10,7 +10,9 @@ PAGES = sorted((ROOT / "04_pages").glob("[0-9]*.py"))
 
 
 def run(script: Path) -> AppTest:
-    app = AppTest.from_file(script, default_timeout=30)
+    # 01_snøskred_nve.py renders ~34,600 map markers — measured ~17s to
+    # build+render locally, so 30s left too little margin on a slower runner.
+    app = AppTest.from_file(script, default_timeout=60)
     app.run()
     return app
 

@@ -5,7 +5,7 @@ import streamlit as st
 from backend import config
 from backend import storage
 
-st.title("❄️ Snøskred -og isulykker historisk data")
+st.title("❄️🪨🌊 Snøskred og andre skredtyper")
 
 # Try storage first (bucket in a deployed app, or 02_data/tables/ locally
 # once the pipeline has uploaded it there) — fall back to the local asset
@@ -24,7 +24,13 @@ if frontpage is not None:
     )
 
 st.caption(
-    "Data from [Varsom.no](https://www.varsom.no). Map tiles from "
-    "[Kartverket](https://www.kartverket.no). Huge thanks to both — "
-    "this dashboard would not exist without their open data."
+    "Data from [Varsom.no](https://www.varsom.no) and "
+    "[NVE](https://www.nve.no/om-nve/aapne-data-og-api-fra-nve/). Map tiles "
+    "from [Kartverket](https://www.kartverket.no). Huge thanks to all "
+    "three — this dashboard would not exist without their open data."
+)
+st.caption(
+    "This dashboard only shows what these sources publish — nothing is "
+    "independently verified, added to, or corrected beyond what's fetched "
+    "directly from them."
 )

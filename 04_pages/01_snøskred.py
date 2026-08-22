@@ -44,6 +44,7 @@ KARTVERKET_TOPO_TILES = "https://cache.kartverket.no/v1/wmts/1.0.0/topo/default/
 KARTVERKET_ATTR = '&copy; <a href="https://www.kartverket.no">Kartverket</a>'
 
 st.header("🗺️ Snøskred")
+st.caption("📡 Data: [Varsom.no](https://www.varsom.no)")
 st.caption("ℹ️ Fordi Kartverket-kartet ikke dekker Svalbard, vises ikke snøskredulykker derfra i denne visningen.")
 
 df = storage.load("snow_avalanche_data")
