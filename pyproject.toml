@@ -23,6 +23,7 @@ dependencies = [
 
 [tool.uv]
 package = false
+constraint-dependencies = ["certifi>=2026.10.19"]
 
 [tool.pytest.ini_options]
 testpaths = ["05_tests"]
